@@ -1,12 +1,12 @@
-import {SERCH_FOCUS,SERCH_BLUR} from './actionTypes'
+import * as constants from './constants'
 const defaultState = {
   focused:false
 }
 export default (state = defaultState, action)=>{
-  if (action.type===SERCH_FOCUS){
+  if (action.type===constants.SERCH_FOCUS){
     return {focused:true}
   }
-  if (action.type===SERCH_BLUR){
+  if (action.type===constants.SERCH_BLUR){
     return {focused:false}
   }
   return state

@@ -1,14 +1,14 @@
-import {SERCH_FOCUS,SERCH_BLUR} from './actionTypes'
+import * as constants from './constants'
 export const getSerchFocusAction = ()=>{
   const action = {
-    type:SERCH_FOCUS
+    type:constants.SERCH_FOCUS
   }
   return action
 }
 
 export const getSerchBlurAction = ()=>{
   const action = {
-    type:SERCH_BLUR
+    type:constants.SERCH_BLUR
   }
   return action
 }
