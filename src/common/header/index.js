@@ -1,4 +1,4 @@
-import  React, { Component } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {CSSTransition} from 'react-transition-group'
 import {getSerchFocusAction,getSerchBlurAction} from '../../store/actionCreators'
@@ -13,9 +13,8 @@ import {
   SerchWrapper
 } from './style'
 
-export class Header extends Component {
-  render() {
-    let {focused,handleInputFocus,handleInputBlur} = this.props
+ const Header = (props)=>{
+    let {focused,handleInputFocus,handleInputBlur} = props
     return (
       <HeaderWrapper>
           <Logo />
@@ -51,8 +50,6 @@ export class Header extends Component {
           </Addition>
       </HeaderWrapper>
     )
-  }
-
 }
 
 const mapStateToProps=(state)=>{
