@@ -10,8 +10,38 @@ import {
   NavSearch,
   Addition,
   Button,
-  SerchWrapper
+  SerchWrapper,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwitch,
+  SerachInfoList,
+  SearchInfoItem,
 } from './style'
+
+const getListArea = (show)=>{
+  if(show){
+    return (
+      <SearchInfo>
+      <SearchInfoTitle>
+        热门搜素
+        <SearchInfoSwitch>换一批</SearchInfoSwitch>
+      </SearchInfoTitle>
+      <SerachInfoList>
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+        <SearchInfoItem>教育</SearchInfoItem>   
+      </SerachInfoList>
+    </SearchInfo>
+    )
+  }else{
+    return null
+  }
+}
 
  const Header = (props)=>{
     let {focused,handleInputFocus,handleInputBlur} = props
@@ -39,6 +69,7 @@ import {
                 <i 
                   className={focused?'focused iconfont':'iconfont'}
                 >&#xe637;</i>
+                {getListArea(focused)}
               </SerchWrapper>
           </Nav>
           <Addition>
