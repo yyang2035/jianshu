@@ -54,7 +54,9 @@ import {
 
 const mapStateToProps=(state)=>{
   return {
-    focused:state.header.get('focused')//immutable要调用header这个对象的属性，必须用get方法
+    focused:state.getIn(['header','focused'])//和下面代码意义相同
+    // state.get('header').get('focused')//immutable要调用header这个对象的属性，必须用get方法
+    //这时state就是个immutable对象了。
   }
 }
 
