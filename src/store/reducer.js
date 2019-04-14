@@ -1,13 +1,6 @@
-import {SERCH_FOCUS,SERCH_BLUR} from './actionTypes'
-const defaultState = {
-  focused:false
-}
-export default (state = defaultState, action)=>{
-  if (action.type===SERCH_FOCUS){
-    return {focused:true}
-  }
-  if (action.type===SERCH_BLUR){
-    return {focused:false}
-  }
-  return state
-}
+import { combineReducers } from 'redux' //可以把一些小的reducer合并成大的reducer
+import {reducer as headerReducer} from '../common/header/store'
+
+export default combineReducers({
+  header:headerReducer
+})
