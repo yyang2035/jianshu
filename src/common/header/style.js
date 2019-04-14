@@ -14,10 +14,11 @@ export const Logo = styled.a.attrs({
   display:block;
   top:0;
   left:0;
-  width: 100px
+  width: 100px;
   height: 56px;
   background: url(${logoPic});
-  background-size: contain
+  background-size: contain;
+
 `
 export const Nav = styled.div`
   width: 960px;
@@ -43,9 +44,44 @@ export const NavItem = styled.div`
     color: #ea6f5a;
   }
 `
+
+
+export const SerchWrapper = styled.div`
+  position: relative;
+  float:left;
+  background: beige;
+  .iconfont {
+    position: absolute;
+    right:5px;
+    bottom: 4px;
+    text-align: center;
+    width:30px;
+    height:30px;
+    line-height: 30px;
+    border-radius:50%;
+    &.focused{
+      background: #777;
+      color: #fff;
+    }
+  }
+`
+
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
 })`
+  &.enter {
+    transition: width .2s ease-out;
+  }
+  &.enter-active{
+    width: 240px;
+  }
+  &.exit {
+    transition: width .2s ease-out;
+    width: 240px;
+  }
+  &.exit-active{
+    width: 160px;
+  }
   width: 160px;
   height: 38px;
   border: none;
@@ -53,12 +89,17 @@ export const NavSearch = styled.input.attrs({
   border-radius: 19px;
   margin-top:9px;
   margin-left:20px;
-  padding: 0 20px;
+  padding: 0 30px 0 20px;
   box-sizing: border-box;
   background: #eee;
   font-size:14px;
+  color: #777;
+  /* transition: width 1s ; */
   &::placeholder {
-    color: #999
+    color: #999;
+  }
+  &.focused {
+    width: 240px;
   }
 `
 
