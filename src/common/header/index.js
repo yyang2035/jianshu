@@ -54,7 +54,7 @@ import {
 
 const mapStateToProps=(state)=>{
   return {
-    focused:state.header.focused
+    focused:state.header.get('focused')//immutable要调用header这个对象的属性，必须用get方法
   }
 }
 
