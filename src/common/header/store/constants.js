@@ -1,2 +1,3 @@
-export const SERCH_FOCUS='search_focus'
-export const SERCH_BLUR='search_blur'
+export const SERCH_FOCUS='header/SERCH_FOCUS'
+export const SERCH_BLUR='header/SERCH_BLUR'
+export const CHANGE_LIST='header/CHANGE_LIST'

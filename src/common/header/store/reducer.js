@@ -1,7 +1,8 @@
 import * as constants from './constants'
 import { fromJS } from 'immutable'
 const defaultState = fromJS({ //让state变成一个immutable对象了
-  focused:false
+  focused:false,
+  list:[]    //fromJS也会包里面的list对象转为immutable数组。
 })
 export default (state = defaultState, action)=>{
   if (action.type===constants.SERCH_FOCUS){
@@ -11,6 +12,10 @@ export default (state = defaultState, action)=>{
   }
   if (action.type===constants.SERCH_BLUR){
     return state.set('focused',false)
+  }
+
+  if(action.type===constants.CHANGE_LIST){
+    return state.set('list',action.data) //此时的action.data是个普通的数组，数据类型就变了，肯定会出错的。(actionCreators.js中用fromJS一下data就没事了)
   }
   return state
 }
