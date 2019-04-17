@@ -1,3 +1,6 @@
 export const SERCH_FOCUS='header/SERCH_FOCUS'
 export const SERCH_BLUR='header/SERCH_BLUR'
 export const CHANGE_LIST='header/CHANGE_LIST'
+export const SWITCH_CLICK='header/SWITCH_CLICK'
+export const MOUSE_ENRTER='header/MOUSE_ENRTER'
+export const MOUSE_LEAVE='header/MOUSE_LEAVE'

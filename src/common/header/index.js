@@ -20,20 +20,32 @@ import {
 
 class Header extends Component {
 
-  getListArea(show,list){
-    if(show){
+  getListArea(focused){
+    let {list,page,totalPage,handleMouseEnter,handleMouseLeave,handleSwitchClick,mouseIn} = this.props
+    let jsList = list.toJS()
+    let pageList = []
+    if(jsList.length){ //ajax请求到数据后再执行
+      for(let i=(page-1)*10;i<page*10;i++){
+        pageList.push(
+          <SearchInfoItem key={jsList[i]}>{jsList[i]}</SearchInfoItem>   
+        )
+      }
+    }
+
+    if(focused||mouseIn){
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
         <SearchInfoTitle>
           热门搜素
-          <SearchInfoSwitch>换一批</SearchInfoSwitch>
+          <SearchInfoSwitch
+            onClick={()=>handleSwitchClick(page,totalPage)}
+          >换一批</SearchInfoSwitch>
         </SearchInfoTitle>
         <SerachInfoList>
-          {list.map((item)=>{
-            return (
-              <SearchInfoItem key={item}>{item}</SearchInfoItem>   
-            )
-          })}
+          {pageList}
         </SerachInfoList>
       </SearchInfo>
       )
@@ -43,7 +55,11 @@ class Header extends Component {
   }
 
   render(){
-    let {focused,handleInputFocus,handleInputBlur,list} = this.props
+    let {
+      focused,
+      handleInputFocus,
+      handleInputBlur
+    } = this.props
     return (
       <HeaderWrapper>
       <Logo />
@@ -68,7 +84,7 @@ class Header extends Component {
             <i 
               className={focused?'focused iconfont':'iconfont'}
             >&#xe637;</i>
-            {this.getListArea(focused,list)}
+            {this.getListArea(focused)}
           </SerchWrapper>
       </Nav>
       <Addition>
@@ -88,7 +104,10 @@ const mapStateToProps=(state)=>{
     focused:state.getIn(['header','focused']),//和下面代码意义相同
     // state.get('header').get('focused')//immutable要调用header这个对象的属性，必须用get方法
     //这时state就是个immutable对象了。
-    list:state.getIn(['header','list'])
+    list:state.getIn(['header','list']),
+    page:state.getIn(['header','page']),
+    totalPage:state.getIn(['header','totalPage']),
+    mouseIn:state.getIn(['header','mouseIn'])
   }
 }
 
@@ -102,6 +121,19 @@ const mapDispatchToProps=(dispatch)=>{
     handleInputBlur(){
       const action = actionCreators.getSerchBlurAction()
       dispatch(action)
+    },
+    handleSwitchClick(page,totalPage){
+      if (page<totalPage){
+        dispatch(actionCreators.getSwitchClickAction(page+1))
+      }else{
+        dispatch(actionCreators.getSwitchClickAction(1))
+      }
+    },
+    handleMouseEnter(){
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave(){
+      dispatch(actionCreators.mouseLeave())
     }
   }
 }

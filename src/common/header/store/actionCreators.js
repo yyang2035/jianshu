@@ -5,7 +5,8 @@ import axios from 'axios'
 const changeList = (data)=>{
   return {
     type:constants.CHANGE_LIST,
-    data:fromJS(data)
+    data:fromJS(data),
+    totalPage: Math.ceil(data.length / 10)
   }
 }
 
@@ -32,5 +33,25 @@ export const getList = ()=>{
     }).catch(()=>{
       console.log('error')
     })
+  }
+}
+
+export const getSwitchClickAction=(page)=>{
+  let action = {
+    type: constants.SWITCH_CLICK,
+    page
+  }
+   return action
+}
+
+export const mouseEnter=()=>{
+  return {
+    type: constants.MOUSE_ENRTER
+  }
+}
+
+export const mouseLeave=()=>{
+  return {
+    type: constants.MOUSE_LEAVE
   }
 }

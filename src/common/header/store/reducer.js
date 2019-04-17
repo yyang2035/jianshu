@@ -2,7 +2,10 @@ import * as constants from './constants'
 import { fromJS } from 'immutable'
 const defaultState = fromJS({ //让state变成一个immutable对象了
   focused:false,
-  list:[]    //fromJS也会包里面的list对象转为immutable数组。
+  mouseIn:false,
+  list:[],    //fromJS也会把里面的list对象转为immutable数组。
+  page:1,
+  totalPage:1
 })
 export default (state = defaultState, action)=>{
 //   if (action.type===constants.SERCH_FOCUS){
@@ -25,7 +28,17 @@ export default (state = defaultState, action)=>{
     case constants.SERCH_BLUR:
       return state.set('focused',false)
     case constants.CHANGE_LIST:
-      return state.set('list',action.data)
+      // return state.set('list',action.data).set('totalPage',action.totalPage)
+      return state.merge({
+        list: action.data,
+        totalPage: action.totalPage
+      })
+    case constants.SWITCH_CLICK:
+      return state.set('page',action.page)
+    case constants.MOUSE_ENRTER:
+      return state.set('mouseIn',true)
+    case constants.MOUSE_LEAVE:
+      return state.set('mouseIn',false)
     default:
       return state  
   }
