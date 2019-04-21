@@ -50,7 +50,7 @@ export const SerchWrapper = styled.div`
   position: relative;
   float:left;
   /* background: beige; */
-  .iconfont {
+  .zoom {
     position: absolute;
     right:5px;
     bottom: 4px;
@@ -124,7 +124,14 @@ export const SearchInfoTitle = styled.div`
 
 export const SearchInfoSwitch = styled.span`
   float:right;
-  font-size:13px
+  font-size:13px;
+    .spin{
+      display: inline-block;
+      font-size:12px;
+      margin-right:5px;
+      transition: all .5s ease-in;
+      transform-origin: center center;
+    }
 `
 
 export const SerachInfoList = styled.div`
